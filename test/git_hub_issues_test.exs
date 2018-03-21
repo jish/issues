@@ -10,17 +10,20 @@ defmodule GitHubIssuesTest do
   end
 
   test "handle ok response" do
-    assert handle_response({:ok, %{ status_code: 200, body: 'body' } }) ==
-      { :ok, 'body'}
+    assert handle_response(
+      {:ok, %{ status_code: 200, body: ~s({ "foo": "bar" }) } }) ==
+      {:ok, %{ "foo" => "bar" }}
   end
 
   test "handle other response code" do
-    assert handle_response({:ok, %{ status_code: 201, body: 'body' } }) ==
-      { :error, 'body'}
+    assert handle_response(
+      {:ok, %{ status_code: 201, body: ~s({ "status": "created" }) } }) ==
+      {:error, %{ "status" => "created" }}
   end
 
   test "handle error response" do
-    assert handle_response({:error, %{ status_code: 500, body: 'body' } }) ==
-      { :error, 'body'}
+    assert handle_response(
+      {:error, %{ status_code: 500, body: ~s({ "error": "server error"}) } }) ==
+      {:error, %{ "error" => "server error" }}
   end
 end
