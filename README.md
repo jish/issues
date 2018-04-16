@@ -19,3 +19,8 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/issues](https://hexdocs.pm/issues).
 
+## Running
+
+To look up issues for a specifig project run:
+
+    mix run -e 'Issues.Cli.run(["elixir-lang", "elixir"])'

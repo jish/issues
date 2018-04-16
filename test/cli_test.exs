@@ -5,8 +5,7 @@ defmodule CliTest do
   import Issues.Cli, only: [
     parse_args: 1,
     decode_response: 1,
-    sort_into_ascending_order: 1,
-    format_into_columns: 1
+    sort_into_ascending_order: 1
   ]
 
   test ":help returned by option parsing with -h and --help options" do
