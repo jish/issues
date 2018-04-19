@@ -31,6 +31,10 @@ defmodule TableFormatterTest do
     assert widths == [5, 4, 4]
   end
 
+  test "column widths of mixed types" do
+    assert TF.widths_of([["one", 1234]]) == [4]
+  end
+
   test "generate format string for row" do
     assert TF.row_format_for([5, 7, 9]) == " ~-5s | ~-7s | ~-9s ~n"
     assert TF.row_format_for([3, 7, 11]) == " ~-3s | ~-7s | ~-11s ~n"

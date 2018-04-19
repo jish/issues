@@ -7,9 +7,17 @@ defmodule Issues.TableFormatter do
 
   def widths_of(columns) do
     Enum.map(columns, fn column ->
-      Enum.map(column, fn word -> String.length(word) end)
+      Enum.map(column, fn word -> get_length(word) end)
       |> Enum.max
     end)
+  end
+
+  defp get_length(value) when is_integer(value) do
+    get_length Integer.to_string(value)
+  end
+
+  defp get_length(value) do
+    String.length(value)
   end
 
   def row_format_for(column_widths) do
@@ -28,7 +36,17 @@ defmodule Issues.TableFormatter do
     :io.format(row_format, keys)
     IO.puts separator(column_widths)
 
-    Enum.each(rows, fn row -> :io.format(row_format, row) end)
+    Enum.each(rows, fn row ->
+      :io.format(row_format, Enum.map(row, fn value -> to_s(value) end))
+    end)
+  end
+
+  defp to_s(value) when is_integer(value) do
+    Integer.to_string(value)
+  end
+
+  defp to_s(value) do
+    value
   end
 
   defp separator(column_widths) do
