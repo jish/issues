@@ -1,13 +1,8 @@
 defmodule Issues.TableFormatter do
   def split_into_columns(items, keys) do
     Enum.map(keys, fn (key) ->
-      Enum.map(items, fn (item) -> extract_value(item, key) end)
+      Enum.map(items, fn (item) -> Map.get(item, key) end)
     end)
-  end
-
-  defp extract_value(item, key) do
-    {_key, value} = List.keyfind(item, key, 0)
-    value
   end
 
   def widths_of(columns) do
@@ -45,7 +40,7 @@ defmodule Issues.TableFormatter do
 
   defp extract_values(items, keys) do
     Enum.map(items, fn item ->
-      Enum.map(keys, fn key -> extract_value(item, key) end)
+      Enum.map(keys, fn key -> Map.get(item, key) end)
     end)
   end
 end

@@ -6,18 +6,18 @@ defmodule TableFormatterTest do
 
   def simple_test_data do
     [
-      [a: "foo", b: "bar", c: "baz", d: "qux"],
-      [a: "one", b: "two", c: "three", d: "four"],
-      [a: "green", b: "eggs", c: "and", d: "ham"]
+      %{ "a" => "foo", "b" => "bar", "c" => "baz", "d" => "qux"},
+      %{ "a" => "one", "b" => "two", "c" => "three", "d" => "four"},
+      %{ "a" => "green", "b" => "eggs", "c" => "and", "d" => "ham"}
     ]
   end
 
   def headers do
-    [:a, :b, :d]
+    ["a", "b", "d"]
   end
 
   test "split into columns" do
-    columns = TF.split_into_columns(simple_test_data(), [:a, :b, :d])
+    columns = TF.split_into_columns(simple_test_data(), ["a", "b", "d"])
 
     assert length(columns) == length(headers())
     assert List.first(columns) == ["foo", "one", "green"]
