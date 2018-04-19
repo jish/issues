@@ -74,15 +74,6 @@ defmodule Issues.Cli do
   end
 
   def format_into_columns(issues) do
-    IO.puts "id | created_at | title"
-    IO.puts "---------------------"
-
-    for issue <- issues do
-      IO.write Integer.to_string Map.get(issue, "id")
-      IO.write " | "
-      IO.write Map.get(issue, "created_at")
-      IO.write " | "
-      IO.puts Map.get(issue, "title")
-    end
+    Issues.TableFormatter.print_table(issues, ["id", "created_at", "title"])
   end
 end
