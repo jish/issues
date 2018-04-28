@@ -8,6 +8,10 @@ defmodule Issues.Cli do
   generate a table of the last _n_ issues of a GitHub project.
   """
 
+  def main(argv) do
+    run(argv)
+  end
+
   def run(argv) do
     parse_args(argv)
     |> process

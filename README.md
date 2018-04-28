@@ -8,7 +8,7 @@ screen.
 
 To look up issues for a specifig project run:
 
-    $ mix run -e 'Issues.Cli.run(["elixir-lang", "elixir"])'
+    $ ./issues elixir-lang elixir
 
      id        | created_at           | title
     -----------+----------------------+-------------------------------------------------------------------------------------
