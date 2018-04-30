@@ -54,11 +54,11 @@ defmodule Issues.Cli do
     System.halt(0)
   end
 
-  def process({user, project, _count}) do
+  def process({user, project, count}) do
     Issues.GitHubIssues.fetch(user, project)
     |> decode_response
     |> sort_into_ascending_order
-    |> Enum.take(4)
+    |> Enum.take(count)
     |> format_into_columns
   end
 
