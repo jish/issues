@@ -5,6 +5,12 @@ defmodule Issues.TableFormatter do
     end)
   end
 
+  @doc """
+  Given a list of lists, return the widest word in each list
+
+      iex> Issues.TableFormatter.widths_of([["a", "bc"], ["def", "ghij"]])
+      [2, 4]
+  """
   def widths_of(columns) do
     Enum.map(columns, fn column ->
       Enum.map(column, fn word -> get_length(word) end)
